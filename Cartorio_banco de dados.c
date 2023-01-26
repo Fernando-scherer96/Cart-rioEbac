@@ -78,67 +78,69 @@ int consulta(){
 	system("pause");
 }
 
+
 int deletar(){
-	printf("Você escolheu deletar nomes!\n");
-	system("pause"); // aparece a opção até o usuário não querer mais
+	
+	char cpf [40];
+	
+	printf ("Digitar o cpf do usuário a ser deletado: ");
+	scanf("%s", &cpf);
+	
+	remove (cpf);
+	
+	FILE *file; 
+	file = fopen (cpf, "r");
+	
+	if (file == NULL){
+		printf("Arquivo não existe!\n");
+		system("pause");
+	}
+	
 }
 
 int main () {
 	int opcao = 0; // Definindo as variaveis 
 	int x=1;
-	char senha[] = "a";
-	int comparacao;
-	
-	printf("### Cartório da EBAC ### \n\n");
-	printf("Digite a sua senha: ");
-	scanf("%s",&senha);
-	
-	comparacao = strcmp(senha, "admin"); // compara a senha com a palavra admin, se for igual retorna zero se não retorna outro numero. 
-	
-	if (comparacao == 0){
+	for (x=1; x=1;){
 		
-		system ("cls");
-		for (x=1; x=1;){
+		system("cls"); // função limpar a tela
 		
-			system("cls"); // função limpar a tela
-			setlocale(LC_ALL, "Portuguese");
+		setlocale(LC_ALL, "Portuguese");
 		
-			printf("Escolha a opção desejada do menu:\n\n"); // inicio do menu
-			printf("\t1 - Registrar Nomes\n"); // \t da espaço na mensagem
-			printf("\t2 - Consultar Nomes\n");
-			printf("\t3 - Deletar Nomes\n");
-			printf("\t4 - Sair do sistema\n\n");
-			// Fim do menu
-			printf("Opção: ");
-			scanf("%d",&opcao);
+		printf("### Cartório da EBAC ### \n\n");
+		printf("Escolha a opção desejada do menu:\n\n"); // inicio do menu
+		printf("\t1 - Registrar Nomes\n"); // \t da espaço na mensagem
+		printf("\t2 - Consultar Nomes\n");
+		printf("\t3 - Deletar Nomes\n");
+		printf("\t4 - Sair do sistema\n\n");
+		// Fim do menu
+		printf("Opção: ");
+		scanf("%d",&opcao);
 	
-			system("cls"); // função limpar a tela
+		system("cls"); // função limpar a tela
 		
-			switch(opcao){
-				case 1: 
-					registro();
+		switch(opcao){
+			case 1: 
+				registro();
+			break;
+			
+			case 2: 
+				consulta();
+			break;
+			
+			case 3: 
+				deletar();
+			break;
+			
+			case 4: 
+				printf("Você escolheu a opção sair do sistema!");
+				return 0;
 				break;
 			
-				case 2: 
-					consulta();
-				break;
-			
-				case 3: 
-					deletar();
-				break;
-			
-				case 4: 
-					printf("Você escolheu a opção sair do sistema!");
-					return 0;
-					break;
-			
-				default: 
-					printf ("Essa opção não é valida, por favor retornar ao menu e escolher uma opção de 1 a 3!\n\n");
-					system("pause"); // aparece a opção até o usuário não querer mais
-				break;
-				}
-			}
+			default: 
+				printf ("Essa opção não é valida, por favor retornar ao menu e escolher uma opção de 1 a 3!\n\n");
+				system("pause"); // aparece a opção até o usuário não querer mais
+			break;
 		}
-		else 
-			printf("Senha incorreta!");
+}
 }
